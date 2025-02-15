@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Factorial Calculator</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color:azure;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 300px;
+      margin: 50px auto;
+      background-color:white;
+      padding: 20px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    input {
+      padding: 5px;
+      margin: 10px;
+      width: 80px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+      background-color:rgb(53, 172, 172);
+      color: #fff;
+    }
+    button:hover {
+      background-color:rgb(53, 172, 172);
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Factorial Calculator</h2>
+  <label for="numberInput">Enter a number:</label><br/>
+  <input type="number" id="numberInput" min="0" /><br/>
+
+  <button onclick="calculateFactorial('iterative')">Iterative</button>
+  <button onclick="calculateFactorial('recursive')">Recursive</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+ 
+  function factorialIterative(n) {
+    if (n === 0 || n === 1) return 1;
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  
+  function factorialRecursive(n) {
+    if (n === 0 || n === 1) return 1;
+    return n * factorialRecursive(n - 1);
+  }
+
+
+  function calculateFactorial(method) {
+    const inputElement = document.getElementById("numberInput");
+    const num = parseInt(inputElement.value, 10);
+
+
+    if (isNaN(num) || num < 0) {
+      document.getElementById("result").innerText = "Please enter a valid non-negative number!";
+      return;
+    }
+
+  
+    let result;
+    if (method === "iterative") {
+      result = factorialIterative(num);
+    } else {
+      result = factorialRecursive(num);
+    }
+
+    
+    document.getElementById("result").innerText = " Factorial of " + num +  " is: " +result;
+  }
+</script>
+
+</body>
+</html>
